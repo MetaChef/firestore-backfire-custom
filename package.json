@@ -30,7 +30,7 @@
     "firestore": "dist/cjs/backfire.js"
   },
   "scripts": {
-    "prepare": "husky install && npm run build",
+    "prepare": "npm install && husky install && npm run build",
     "format": "prettier --write --loglevel warn './src/**/*.ts'",
     "build": "rimraf dist/* && concurrently pnpm:build:* -n build:",
     "build:out:esm": "swc src -d dist/esm --copy-files --config module.type=es6",
