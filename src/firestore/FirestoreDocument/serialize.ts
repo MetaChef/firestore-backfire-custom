@@ -55,19 +55,33 @@ export function serializeDocument(
 }
 
 function toJSON(object: any) {
+  // Check if the value is null and return null directly
+  if (object === null) return null;
+
   let output: any;
 
+  // Preserve arrays as is
   if (Array.isArray(object)) output = [...object];
+  // Create a shallow copy of the object
   else output = { ...object };
 
+  // Iterate through object keys
   for (const key in output) {
     const value = output[key];
-    if (typeof value !== "object") continue;
+
+    // Skip further processing if value is not an object
+    if (typeof value !== "object" || value === null) {
+      output[key] = value; // Keep the value as it is, including null
+      continue;
+    }
+
+    // Recursively process nested objects
     output[key] = toJSON(value);
   }
 
   return output;
 }
+
 
 /**
  * Recursively checks through the values of an object and
