@@ -2,7 +2,7 @@
   "name": "firestore-backfire",
   "version": "2.5.3",
   "description": "Ultimate control over backing up and restoring your Firestore data",
-  "repository": "git@github.com:benyap/firestore-backfire.git",
+  "repository": "git@github.com:MetaChef/firestore-backfire-custom.git",
   "author": "Ben Yap <contact@benyap.com>",
   "bugs": "https://github.com/benyap/firestore-backfire/issues",
   "homepage": "https://github.com/benyap/firestore-backfire",
@@ -30,7 +30,7 @@
     "firestore": "dist/cjs/backfire.js"
   },
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky install && npm run build",
     "format": "prettier --write --loglevel warn './src/**/*.ts'",
     "build": "rimraf dist/* && concurrently pnpm:build:* -n build:",
     "build:out:esm": "swc src -d dist/esm --copy-files --config module.type=es6",
