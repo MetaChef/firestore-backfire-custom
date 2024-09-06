@@ -32,17 +32,17 @@
   "scripts": {
     "prepare": "npm run build",
     "format": "prettier --write --loglevel warn './src/**/*.ts'",
-    "build": "rimraf dist && concurrently pnpm:build:* -n build:",
+    "build": "rimraf dist && concurrently \"npm run build:out:esm\" \"npm run build:out:cjs\" \"npm run build:dts:esm\" \"npm run build:dts:cjs\" -n build:",
     "build:out:esm": "swc src -d dist/esm --copy-files --config module.type=es6",
     "build:out:cjs": "swc src -d dist/cjs --copy-files --config module.type=commonjs",
     "build:dts:esm": "tsc -p tsconfig.build.json --outDir dist/esm --declaration --emitDeclarationOnly && resolve-tspaths --out dist/esm",
     "build:dts:cjs": "tsc -p tsconfig.build.json --outDir dist/cjs --declaration --emitDeclarationOnly && resolve-tspaths --out dist/cjs",
-    "dev": "rimraf dist/* && concurrently pnpm:build:out:* -n build: && node dist/cjs/backfire.js",
+    "dev": "rimraf dist/* && concurrently \"npm run build:out:esm\" \"npm run build:out:cjs\" -n build: && node dist/cjs/backfire.js",
     "emulator": "firebase emulators:start --project demo",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
-    "release": "pnpm test && release-it"
+    "release": "npm test && release-it"
   },
   "dependencies": {
     "ansi-colors": "4.1.3",
