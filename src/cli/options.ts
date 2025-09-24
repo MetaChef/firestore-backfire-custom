@@ -19,8 +19,8 @@ export const ProjectOption = ({
     action === "import"
       ? "the Firebase project to import data to"
       : action === "export"
-      ? "the Firebase project to export data from"
-      : "the Firebase project to read from",
+        ? "the Firebase project to export data from"
+        : "the Firebase project to read from",
   );
 
 export const KeyFileOption = () =>
@@ -93,11 +93,11 @@ export const WriteModeOption = () =>
   ).choices(["create", "insert", "merge", "overwrite"]);
 
 export const DebugOption = () =>
-  new Option("-d, --debug", "print debug level logs and higher");
+  new Option("--debug", "print debug level logs and higher");
 
 export const VerboseOption = () =>
   new Option(
-    "-v, --verbose",
+    "--verbose",
     "print verbose level logs and higher (overrides --debug)",
   );
 
@@ -118,7 +118,7 @@ export const UpdateRateOption = () =>
 // Advanced config options
 
 export const ExploreIntervalOption = () =>
-  new Option("--exploreInterval <millseconds>", "see documentation").argParser(
+  new Option("--exploreInterval <milliseconds>", "see documentation").argParser(
     Parser.integer({ min: 1 }),
   );
 
@@ -128,9 +128,10 @@ export const ExploreChunkSizeOption = () =>
   );
 
 export const DownloadIntervalOption = () =>
-  new Option("--downloadInterval <millseconds>", "see documentation").argParser(
-    Parser.integer({ min: 1 }),
-  );
+  new Option(
+    "--downloadInterval <milliseconds>",
+    "see documentation",
+  ).argParser(Parser.integer({ min: 1 }));
 
 export const DownloadChunkSizeOption = () =>
   new Option("--downloadChunkSize <size>", "see documentation").argParser(
