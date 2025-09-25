@@ -156,9 +156,7 @@ function deserializeFirestoreQuery(
   const {
     parentPath,
     collectionId,
-    // `fieldFilters` has been renamed to `filters`
     fieldFilters = [],
-    filters = fieldFilters,
     fieldOrders = [],
     startAt,
     endAt,
@@ -170,7 +168,7 @@ function deserializeFirestoreQuery(
   const path = `${parentPath.segments.join("/")}/${collectionId}`;
   let ref: Query = firestore.collection(path);
 
-  filters.forEach(({ field, op, value }) => {
+  fieldFilters.forEach(({ field, op, value }) => {
     if (op === "OPERATOR_UNSPECIFIED") return;
     const path = field.segments.join(".");
     switch (op) {

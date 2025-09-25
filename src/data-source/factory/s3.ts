@@ -20,7 +20,7 @@ export async function getS3Options(options: DataSourceOptions) {
 
   if (!awsRegion) throw new DataSourceError("`awsRegion` is required");
 
-  await ensureDependencyInstalled(
+  ensureDependencyInstalled(
     "@aws-sdk/client-s3",
     "required to use S3 data source",
   );
@@ -29,7 +29,7 @@ export async function getS3Options(options: DataSourceOptions) {
     return { awsAccessKeyId, awsSecretAccessKey, awsRegion };
 
   if (awsProfile) {
-    await ensureDependencyInstalled(
+    ensureDependencyInstalled(
       "@aws-sdk/credential-provider-ini",
       "required to use S3 data source with shared credentials",
     );

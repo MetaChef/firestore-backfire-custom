@@ -28,7 +28,7 @@ export function serializeDocument(
   const { timestamps, geopoints, documents, queries } =
     findFirestoreFields(json);
 
-  // Strip unnecessary fields from Firestore objects
+  // Strip unecessary fields from Firestore objects
   documents.forEach((path) => {
     deleteFieldByPath(json, `${path}._firestore`);
     deleteFieldByPath(json, `${path}._converter`);
@@ -62,7 +62,7 @@ function toJSON(object: any) {
 
   // Preserve arrays as is
   if (Array.isArray(object)) output = [...object];
-  else if (object === null) output = null;
+  // Create a shallow copy of the object
   else output = { ...object };
 
   // Iterate through object keys

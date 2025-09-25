@@ -12,11 +12,11 @@ export class MissingPeerDependencyError extends EError {
  * Asserts that the specified dependency is installed.
  * Throws a {@link MissingPeerDependencyError} if not installed.
  */
-export async function ensureDependencyInstalled(
+export function ensureDependencyInstalled(
   packageName: string,
   info?: string,
-): Promise<void> {
-  const installed = await isDependencyInstalled(packageName);
+): void {
+  const installed = isDependencyInstalled(packageName);
   if (!installed) {
     throw new MissingPeerDependencyError(packageName, info);
   }
@@ -25,25 +25,11 @@ export async function ensureDependencyInstalled(
 /**
  * Checks if the specified dependency is installed.
  */
-export async function isDependencyInstalled(
-  packageName: string,
-): Promise<boolean> {
+export function isDependencyInstalled(packageName: string): boolean {
   try {
     require(packageName);
     return true;
   } catch (error) {
-    if (
-      error instanceof Error &&
-      error.message.includes(`Please use "import" instead.`)
-    ) {
-      try {
-        await import(packageName);
-        return true;
-      } catch (error) {
-        return false;
-      }
-    }
-
     return false;
   }
 }
