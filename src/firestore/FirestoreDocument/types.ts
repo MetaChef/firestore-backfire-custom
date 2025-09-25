@@ -1,12 +1,9 @@
 import type { Timestamp } from "@google-cloud/firestore/build/src/timestamp";
 import type { GeoPoint } from "@google-cloud/firestore/build/src/geo-point";
 
-// @ts-ignore
-import type {
-  DocumentReference,
-  Query,
-  QueryOptions,
-} from "@google-cloud/firestore/build/src/reference";
+import type { Query } from "@google-cloud/firestore/build/src/reference/query";
+import type { QueryOptions } from "@google-cloud/firestore/build/src/reference/query-options";
+import type { DocumentReference } from "@google-cloud/firestore/build/src/reference/document-reference";
 
 import * as protos from "@google-cloud/firestore/build/protos/firestore_v1_proto_api";
 
